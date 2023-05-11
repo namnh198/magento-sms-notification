@@ -1,0 +1,33 @@
+{
+  "name": "code-lands/module-sms-notification",
+  "version": "1.0.0",
+  "description": "Send SMS notification",
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "stable",
+  "type": "magento2-module",
+  "authors": [
+    {
+      "name": "namnh198",
+      "email": "namnhn98@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "~7.4|~8.0|~8.1",
+    "magento/framework": "^102.0|^103.0",
+    "magento/module-checkout": "^100.3|^100.4",
+    "magento/module-email": "^101.1|^102.0"
+  },
+  "license": [
+    "MIT"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "CodeLands\\SmsNotification\\": ""
+    }
+  }
+}

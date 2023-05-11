@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="CodeLands\SmsNotification\Model\Sms\SmsMessageInterface" type="CodeLands\SmsNotification\Model\Sms\SmsMessage" />
+
+    <type name="CodeLands\SmsNotification\Model\GatewayFactory">
+        <arguments>
+            <argument name="gateways" xsi:type="array">
+                <item name="twilio" xsi:type="string">CodeLands\SmsNotification\Model\Gateway\TwilioSmsGateway</item>
+                <item name="sms_to" xsi:type="string">CodeLands\SmsNotification\Model\Gateway\SmsToGateway</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="sms_log_grid_data_source" xsi:type="string">CodeLands\SmsNotification\Model\ResourceModel\SmsLog\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="CodeLands\SmsNotification\Model\ResourceModel\SmsLog\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">sms_notification_log</argument>
+            <argument name="resourceModel" xsi:type="string">CodeLands\SmsNotification\Model\ResourceModel\SmsLog</argument>
+        </arguments>
+    </virtualType>
+</config>

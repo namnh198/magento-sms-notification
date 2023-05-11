@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <sms_notification>
+            <general>
+                <async_all>0</async_all>
+                <log_sms>1</log_sms>
+                <develop>0</develop>
+            </general>
+            <configuration>
+                <twilio_token backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
+            </configuration>
+            <sms_template>
+                <order_success>Thank you for placing your order. You can check the details here {{order_url}}</order_success>
+            </sms_template>
+        </sms_notification>
+    </default>
+</config>

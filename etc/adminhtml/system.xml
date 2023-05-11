@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="sms_notification" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>SMS Notification</label>
+            <tab>service</tab>
+            <resource>CodeLands_SmsNotification::config_sms_manager</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>General</label>
+                <field id="async_all" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow async for all emails</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="log_sms" translate="label" type="select" sortOrder="20" showInDefault="1">
+                    <label>Log SMS</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="develop" translate="label" type="select" sortOrder="30" showInDefault="1">
+                    <label>Develop</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="configuration" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>SMS Configuration</label>
+                <field id="gate_way" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sms Gateway</label>
+                    <source_model>CodeLands\SmsNotification\Model\Config\Source\SmsGateway</source_model>
+                </field>
+                <field id="twilio_sid" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Twilio Account ID</label>
+                    <validate>required-entry validate-no-html-tags</validate>
+                    <depends>
+                        <field id="sms_notification/configuration/gate_way">twilio</field>
+                    </depends>
+                </field>
+                <field id="twilio_token" translate="label" type="obscure" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Twilio Auth Token</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <validate>required-entry validate-no-html-tags</validate>
+                    <depends>
+                        <field id="sms_notification/configuration/gate_way">twilio</field>
+                    </depends>
+                </field>
+                <field id="twilio_phone_number" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Twilio Phone Number</label>
+                    <validate>required-entry validate-no-html-tags</validate>
+                    <depends>
+                        <field id="sms_notification/configuration/gate_way">twilio</field>
+                    </depends>
+                </field>
+                <field id="sms_to_sender_id" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sms.to Sender ID</label>
+                    <validate>required-entry validate-no-html-tags</validate>
+                    <depends>
+                        <field id="sms_notification/configuration/gate_way">sms_to</field>
+                    </depends>
+                </field>
+                <field id="sms_to_api_key" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sms.to API Key</label>
+                    <validate>required-entry validate-no-html-tags</validate>
+                    <depends>
+                        <field id="sms_notification/configuration/gate_way">sms_to</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="sms_template" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>SMS Template</label>
+                <field id="order_success" translate="label" type="textarea" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Order Success</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
