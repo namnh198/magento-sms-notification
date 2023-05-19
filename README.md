@@ -1,4 +1,4 @@
-# CodeLands_MicrosoftClarity module
+# CodeLands_SmsNotification module
 
 Send Notification via SMS
 
